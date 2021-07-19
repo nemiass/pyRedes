@@ -3,6 +3,16 @@ import re
 import os
 
 
+def mask_to_decimal(mask: int) -> str:
+    mask_binary = []
+    mask_tmp = ""
+    for i in range(1, 33):
+        mask_tmp += "1" if i <= mask else "0"
+        if i % 8 == 0:
+            mask_binary.append(mask_tmp[i - 8: i])
+    return ".".join([str(int(octeto, 2)) for octeto in mask_binary])
+
+
 class Routing:
     # ToDo
     pass
@@ -18,16 +28,6 @@ class Red:
     # ToDo
     def __init__(self):
         self.routers = {}
-
-
-def mask_to_decimal(mask: int) -> str:
-    mask_binary = []
-    mask_tmp = ""
-    for i in range(1, 33):
-        mask_tmp += "1" if i <= mask else "0"
-        if i % 8 == 0:
-            mask_binary.append(mask_tmp[i - 8: i])
-    return ".".join([str(int(octeto, 2)) for octeto in mask_binary])
 
 
 class PyRedes:
